@@ -24,4 +24,19 @@ const consultar = async () => {
     }
 };
 
-module.exports = { insertar, consultar/*, editar, eliminar */ };
+const editar = async (id, datos) => {
+    const consulta = {
+        text: "UPDATE canciones SET titulo = $1, artista = $2, tono = $3 WHERE id = $4",
+        values: [...datos, id], // ID al final
+    };
+
+    try {
+        const result = await pool.query(consulta);
+        return result;
+    } catch (error) {
+        console.error("Error al editar en la base de datos:", error.message);
+        throw error;
+    }
+};
+
+module.exports = { insertar, consultar, editar/*, eliminar */ };
