@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 app.post("/cancion", async (req, res) => {
     try {
         const datos = Object.values(req.body);
-        console.log(req.body)
+        //console.log(req.body)
         const respuesta = await insertar(datos);
         res.json(respuesta);
     } catch (error) {
@@ -31,9 +31,20 @@ app.post("/cancion", async (req, res) => {
 app.get("/canciones", async (req, res) => {
     try {
         const registros = await consultar();
-        console.log(registros);
+        console.log(registros.rows);
         res.json(registros.rows);
     } catch (error) {
         res.status(500).send("Algo salió mal :/ ...");        
+    }
+});
+
+app.put("/cancion/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const datos = Object.values(req.body);
+        console.log(id);
+        
+    } catch (error) {
+        res.status(500).send("Algo salió mal :/ ...");
     }
 });
