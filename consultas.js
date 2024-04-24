@@ -39,4 +39,13 @@ const editar = async (id, datos) => {
     }
 };
 
-module.exports = { insertar, consultar, editar/*, eliminar */ };
+const eliminar = async (id) => {
+    try {
+        const result = await pool.query(`DELETE FROM canciones WHERE id ='${id}'`);
+        return result;
+    } catch (error) {
+        console.error("Error al consultar la base de datos:", error.message);        
+    }
+}
+
+module.exports = { insertar, consultar, editar, eliminar };
