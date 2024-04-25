@@ -54,7 +54,6 @@ app.put("/cancion/:id", async (req, res) => {
 app.delete("/cancion/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(id);
         const respuesta = await eliminar(id);
         res.json(respuesta);
         
